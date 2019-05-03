@@ -1,0 +1,73 @@
+package com.glitterlabs.home.skeleton1;
+
+
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentContainer;
+import android.text.TextUtils;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class EnterName extends Fragment {
+
+    private TextView nameTxt;
+    private Button btnNext;
+
+    DatabaseReference addName;
+
+    public EnterName() {
+        // Required empty public constructor
+    }
+
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_enter_name, container, false);
+        nameTxt = view.findViewById(R.id.nameText);
+        btnNext = view.findViewById(R.id.btnSubmit);
+        btnNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String Name= nameTxt.getText().toString().trim();
+                if (TextUtils.isEmpty(Name)){
+                    return;
+                }else {
+                    proceed(Name);
+                }
+            }
+        });
+
+        return view;
+    }
+    private void proceed(String Name){
+
+        MainApplication mainApplication = MainApplication.getInstance();
+        User user =mainApplication.getUser();
+        //MainApplication mainApplication = MainApplication.getInstance();
+        user.setmName(Name);
+        mainApplication.setUser(user);
+        CreateProfileActivity.fragmentManager.beginTransaction().replace(R.id.fragmentContainer,new EnterAddress(),null).addToBackStack(null).commit();
+
+    }
+
+}
+
+/*
+addName = FirebaseDatabase.getInstance().getReference("user");
+        String id = addName.push().getKey();
+        User user = new User(id,Name);
+        addName.child(id).setValue(user);*/

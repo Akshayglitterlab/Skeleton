@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "243643692598",
+    "firebase_url": "https://skeleton1-f6e4c.firebaseio.com",
+    "project_id": "skeleton1-f6e4c",
+    "storage_bucket": "skeleton1-f6e4c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:243643692598:android:3af3378648816a51",
+        "android_client_info": {
+          "package_name": "com.glitterlabs.home.skeleton1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "243643692598-0l31fc5co2kbl91ul191c394q1rlses9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.glitterlabs.home.skeleton1",
+            "certificate_hash": "1575ad5a9333a1379211c439f3fb2cdf67a0b65e"
+          }
+        },
+        {
+          "client_id": "243643692598-ivdh1aef238eq0dbe8bkrjovgea82jn4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWNipSu6VizDj2-B-0lhMIq5Iw12ZeIJs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "243643692598-ivdh1aef238eq0dbe8bkrjovgea82jn4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
