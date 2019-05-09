@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
-import com.glitterlabs.home.skeleton1.R;
+import com.glitterlabs.skeleton.R;
 
 
 public class AboutUsActivity extends AppCompatActivity {

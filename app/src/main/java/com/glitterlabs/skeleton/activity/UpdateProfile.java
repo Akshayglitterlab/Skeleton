@@ -30,8 +30,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.glitterlabs.home.skeleton1.R;
 
+import com.glitterlabs.skeleton.R;
 import com.glitterlabs.skeleton.model.Users;
 import com.glitterlabs.skeleton.utility.Constant;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -102,7 +102,7 @@ public class UpdateProfile extends AppCompatActivity {
         initViews();
         registerEvents();
 
-        databaseReference.child(Constant.TEST).child(Constant.USERS).child(userId).addValueEventListener(new ValueEventListener() {
+        databaseReference.child(Constant.TEST).child(Constant.USERS).child(Prefs.getString("userID",null)).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 user = dataSnapshot.getValue(Users.class);
@@ -265,25 +265,7 @@ public class UpdateProfile extends AppCompatActivity {
         }
     }
 
-    /*private void writeNewUser(String name, String address) {
-        User user = new User(name, address);
 
-        mDatabase.child("users").child(userId).setValue(user);
-    }*/
-
-    /*private void saveDataFirebase(User user) {
-        Map<String,Object> childUpdates = new HashMap<>();
-        if(String.valueOf(user.getmMobile())!="null")
-            childUpdates.put("mUserId",user.getmUserID());
-        //childUpdates.put("mMobile", user.getmMobile());
-        childUpdates.put("mName",user.getmName());
-        childUpdates.put("mAddress", user.getmAddress());
-        childUpdates.put("mPicUrl",user.getmPicUrl());
-        databaseReference.child(user.getmUserID()).updateChildren(childUpdates);
-        Toast.makeText(UpdateProfile.this, "User Created", Toast.LENGTH_SHORT).show();
-
-    }
-*/
     private void uploadFile(Uri uri){
         if (uri != null){
             /*MainApplication mainApplication = MainApplication.getInstance();
@@ -355,15 +337,36 @@ public class UpdateProfile extends AppCompatActivity {
 
     private void initViews() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("User Profile");
+        toolbar.setTitle("Update Profile");
         setSupportActionBar(toolbar);
         databaseReference = FirebaseDatabase.getInstance().getReference();
         userId = getIntent().getStringExtra("user");
         UserProfile = (ImageView)findViewById(R.id.profile_image);
-        editProfile = (TextView)findViewById(R.id.editUserProfile);
+        //editProfile = (TextView)findViewById(R.id.editUserProfile);
         phoneNumber = (TextView)findViewById(R.id.phone_number);
         userName = (EditText) findViewById(R.id.userName);
         userAddress = (EditText) findViewById(R.id.userAddress);
         btnChangeSubmit = (Button)findViewById(R.id.changeSubmit);
     }
 }
+
+
+/*private void writeNewUser(String name, String address) {
+        User user = new User(name, address);
+
+        mDatabase.child("users").child(userId).setValue(user);
+    }*/
+
+    /*private void saveDataFirebase(User user) {
+        Map<String,Object> childUpdates = new HashMap<>();
+        if(String.valueOf(user.getmMobile())!="null")
+            childUpdates.put("mUserId",user.getmUserID());
+        //childUpdates.put("mMobile", user.getmMobile());
+        childUpdates.put("mName",user.getmName());
+        childUpdates.put("mAddress", user.getmAddress());
+        childUpdates.put("mPicUrl",user.getmPicUrl());
+        databaseReference.child(user.getmUserID()).updateChildren(childUpdates);
+        Toast.makeText(UpdateProfile.this, "User Created", Toast.LENGTH_SHORT).show();
+
+    }
+*/

@@ -32,7 +32,8 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.glitterlabs.home.skeleton1.R;
+import com.glitterlabs.skeleton.R;
+import com.glitterlabs.skeleton.activity.ProfileActivity;
 import com.glitterlabs.skeleton.model.Users;
 import com.glitterlabs.skeleton.utility.Constant;
 import com.glitterlabs.skeleton.utility.MainApplication;
@@ -161,13 +162,15 @@ public class EnterProfilePictureFragment extends Fragment {
         childUpdates.put("mAddress", user.getmAddress());
         childUpdates.put("mPicUrl",strPicUrl);
         databaseReference.child(user.getmUserID()).updateChildren(childUpdates);
-        //databaseReference = FirebaseDatabase.getInstance().getReference().child();
         Toast.makeText(getActivity(), "User Created", Toast.LENGTH_SHORT).show();
 
         Prefs.putString("userID", user.getmUserID());
         Prefs.putInt("LoginStatus",1);
-        Intent intent = new Intent(getActivity(), HomeActivity.class);
+        Intent intent = new Intent(getActivity(), ProfileActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
+        getActivity().finish();
+
     }
 
 
@@ -183,10 +186,6 @@ public class EnterProfilePictureFragment extends Fragment {
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
                 Uri tempUri = getImageUri(getActivity(), bitmap);
-                //File finalFile = new File(getRealPathFromURI1(getActivity(),tempUri));
-                /*CropImage.activity(Uri.fromFile(new File(String.valueOf(finalFile))))
-                        .start(getActivity());*/
-                //croppedImgUri = result.getUri();
                 uploadFile(tempUri);
 
             }
@@ -262,14 +261,6 @@ public class EnterProfilePictureFragment extends Fragment {
             //display an error if no file is selected
         }
     }
-
-
-    /*public String getRealPathFromURI1(Context context,Uri contentUri) {
-        Cursor cursor = context.getContentResolver().query(contentUri, null, null, null, null);
-        cursor.moveToFirst();
-        int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
-        return cursor.getString(idx);
-    }*/
 
     public Uri getImageUri(Context inContext, Bitmap inImage) {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
@@ -375,6 +366,11 @@ public class EnterProfilePictureFragment extends Fragment {
         startActivityForResult(Intent.createChooser(intent, "Select File"), SELECT_FILE);
     }
 
-
-
 }
+
+    /*public String getRealPathFromURI1(Context context,Uri contentUri) {
+        Cursor cursor = context.getContentResolver().query(contentUri, null, null, null, null);
+        cursor.moveToFirst();
+        int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
+        return cursor.getString(idx);
+    }*/

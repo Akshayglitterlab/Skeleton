@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.glitterlabs.home.skeleton1.R;
+import com.glitterlabs.skeleton.R;
 import com.glitterlabs.skeleton.activity.CreateProfileActivity;
 import com.glitterlabs.skeleton.model.Users;
 import com.glitterlabs.skeleton.utility.MainApplication;

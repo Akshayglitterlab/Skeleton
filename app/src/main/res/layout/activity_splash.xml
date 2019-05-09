@@ -9,7 +9,7 @@
     android:background="@color/icons"
     android:orientation="vertical"
     android:id="@+id/activity_main1"
-    tools:context=".Splash">
+    tools:context=".activity.SplashActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -35,7 +35,7 @@
             android:layout_height="200dp"
             android:gravity="top"
             android:scrollIndicators="top|left|right"
-            android:src="@drawable/g-technology" />
+            android:src="@drawable/gtechnology" />
 
         <TextView
             android:layout_width="match_parent"

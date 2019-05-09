@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/White"
-    tools:context="com.glitterlabs.skeleton.CreateProfileActivity">
+    tools:context="com.glitterlabs.skeleton.activity.CreateProfileActivity">
 
 
     <FrameLayout

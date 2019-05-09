@@ -6,7 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
-import com.glitterlabs.home.skeleton1.R;
+import com.glitterlabs.skeleton.R;
 import com.glitterlabs.skeleton.fragments.EnterNameFragment;
 
 
@@ -33,7 +33,6 @@ public class CreateProfileActivity extends AppCompatActivity {
             fragmentTransaction.add(R.id.fragmentContainer,enterName,null);
             fragmentTransaction.commit();
         }
-        //progressDialog.setMessage("Register");
-        //progressDialog.show();
+
     }
 }

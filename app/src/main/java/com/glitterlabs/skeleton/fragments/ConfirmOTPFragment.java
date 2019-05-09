@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.glitterlabs.home.skeleton1.R;
+import com.glitterlabs.skeleton.R;
 import com.glitterlabs.skeleton.model.Users;
 import com.glitterlabs.skeleton.utility.Constant;
 import com.glitterlabs.skeleton.activity.CreateProfileActivity;
@@ -34,7 +34,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.auth.User;
 
 import static android.support.constraint.Constraints.TAG;
 
@@ -104,25 +103,9 @@ public class ConfirmOTPFragment extends Fragment {
                             Log.d(TAG, "signInWithCredential:success");
 
                             FirebaseUser firebaseUser = task.getResult().getUser();
-                            //firebaseUser.getUid();
 
-                            //String id = firebaseUser.getUid();
-                            //User user = new User();
-                            //MainApplication mainApplication = MainApplication.getInstance();
                             checkExistingUser(firebaseUser);
-                            /*if (firebaseUser != null){
-                                Intent intent = new Intent(getActivity(), HomeActivity.class);
-                                ((MainActivity) getActivity()).startActivity(intent);
-                            }*/
-                            /*user.setmMobile(firebaseUser.getPhoneNumber());
-                            user.setmUserID(firebaseUser.getUid());
-                            mainApplication.setUser(user);
 
-                            Intent intent = new Intent(getActivity(), CreateProfileActivity.class);
-                            ((MainActivity) getActivity()).startActivity(intent);*/
-
-                            //
-                            // ...
                         } else {
                             // Sign in failed, display a message and update the UI
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
@@ -167,3 +150,17 @@ public class ConfirmOTPFragment extends Fragment {
         });
     }
 }
+
+/*if (firebaseUser != null){
+                                Intent intent = new Intent(getActivity(), HomeActivity.class);
+                                ((MainActivity) getActivity()).startActivity(intent);
+                            }*/
+                            /*user.setmMobile(firebaseUser.getPhoneNumber());
+                            user.setmUserID(firebaseUser.getUid());
+                            mainApplication.setUser(user);
+
+                            Intent intent = new Intent(getActivity(), CreateProfileActivity.class);
+                            ((MainActivity) getActivity()).startActivity(intent);*/
+
+//
+// ...

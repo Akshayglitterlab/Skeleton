@@ -13,7 +13,7 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.glitterlabs.home.skeleton1.R;
+import com.glitterlabs.skeleton.R;
 import com.glitterlabs.skeleton.activity.MainActivity;
 import com.glitterlabs.skeleton.fragments.ConfirmOTPFragment;
 import com.google.firebase.FirebaseException;
@@ -81,14 +81,6 @@ public class PhoneNumber extends Fragment {
                     return;
                 }
                 sendVerificationCode(phone1);
-                /*PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                        phone1,        // Phone number to verify
-                        60,                 // Timeout duration
-                        TimeUnit.SECONDS,   // Unit of timeout
-                        getActivity(),               // Activity (for callback binding)
-                        mCallbacks);        // OnVerificationStateChangedCallbacks*/
-
-
 
             }
 
@@ -161,18 +153,19 @@ public class PhoneNumber extends Fragment {
     }
     private void sendVerification(String mVerificationId, PhoneAuthProvider.ForceResendingToken mResendToken){
         ConfirmOTPFragment confirmOTP = new ConfirmOTPFragment();
-        //FragmentManager fm = getFragmentManager();
-        //FragmentTransaction ft = fm.beginTransaction();
         Bundle args = new Bundle();
         args.putString("Id", mVerificationId);
         args.putString("Token", String.valueOf(mResendToken));
         confirmOTP.setArguments(args);
         MainActivity.fragmentManager.beginTransaction().replace(R.id.fragmentContainer,confirmOTP,null).commit();
-        //ft.replace(R.id.fragmentContainer,confirmOTP,null).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).addToBackStack(null).commit();
-
     }
 
 }
 
-
+ /*PhoneAuthProvider.getInstance().verifyPhoneNumber(
+                        phone1,        // Phone number to verify
+                        60,                 // Timeout duration
+                        TimeUnit.SECONDS,   // Unit of timeout
+                        getActivity(),               // Activity (for callback binding)
+                        mCallbacks);        // OnVerificationStateChangedCallbacks*/
 

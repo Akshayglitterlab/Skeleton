@@ -7,10 +7,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.glitterlabs.home.skeleton1.BuildConfig;
-import com.glitterlabs.home.skeleton1.R;
-
-
+import com.glitterlabs.skeleton.BuildConfig;
+import com.glitterlabs.skeleton.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -26,8 +24,6 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        //firebaseAuth = FirebaseAuth.getInstance();
-        //firebaseUser = firebaseAuth.getCurrentUser();
         String s = getIntent().getStringExtra("userID");
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -46,7 +42,7 @@ public class HomeActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         switch (id){
-            case R.id.Profile:
+            case R.id.editProfile:
                 Intent profileActivity = new Intent(HomeActivity.this, ProfileActivity.class);
                 String ss = getIntent().getStringExtra("userID");
                 profileActivity.putExtra("userID",ss);
@@ -66,7 +62,8 @@ public class HomeActivity extends AppCompatActivity {
                     shareIntent.setType("text/plain");
                     shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Skeleton App");
                     String shareMessage= "\nLet me recommend you this application\n\n";
-                    shareMessage = shareMessage + "https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID +"\n\n";
+                    shareMessage = shareMessage + "https://play.google.com/store/apps/details?id="
+                            + BuildConfig.APPLICATION_ID +"\n\n";
                     shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
                     startActivity(Intent.createChooser(shareIntent, "choose one"));
                 } catch(Exception e) {

@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
-import com.glitterlabs.home.skeleton1.R;
+import com.glitterlabs.skeleton.R;
 import com.glitterlabs.skeleton.utility.Constant;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.database.DatabaseReference;
@@ -91,8 +91,6 @@ public class FeedbackActivity extends AppCompatActivity {
         edtFeedback = (EditText)findViewById(R.id.edtFeedback);
         btnSubmitFeedback = (Button)findViewById(R.id.btnSubmitFeedback);
         tilFeedback = (TextInputLayout)findViewById(R.id.tilFeedback);
-        /*WindowManager.LayoutParams p = getDialog().getWindow().getAttributes();
-        p.width = ViewGroup.LayoutParams.MATCH_PARENT;
-        p.softInputMode = WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE;*/
+
     }
 }

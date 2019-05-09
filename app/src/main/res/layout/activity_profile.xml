@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/White"
-    tools:context=".ProfileActivity">
+    tools:context=".activity.ProfileActivity">
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
@@ -22,13 +22,7 @@
         android:orientation="vertical"
         android:layout_marginTop="@dimen/_10sdp"
         >
-        <TextView
-            android:id="@+id/editUserProfile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_marginRight="@dimen/_16sdp"
-            android:text="Edit Profile"/>
+
 
         <FrameLayout
             android:layout_width="@dimen/_100sdp"
@@ -44,8 +38,6 @@
                 android:src="@drawable/ic_blank_profile"
                 app:civ_border_color="@color/colorPrimary"
                 app:civ_border_width="2dp" />
-
-
 
         </FrameLayout>
 

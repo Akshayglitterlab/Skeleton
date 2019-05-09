@@ -8,7 +8,7 @@
     android:background="#791d1d1d"
     android:gravity="center"
     tools:ignore="MissingPrefix"
-    tools:context=".FeedbackActivity">
+    tools:context=".activity.FeedbackActivity">
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"

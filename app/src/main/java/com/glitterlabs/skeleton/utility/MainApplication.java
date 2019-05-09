@@ -4,7 +4,6 @@ import android.content.ContextWrapper;
 
 
 import com.glitterlabs.skeleton.model.Users;
-import com.google.firebase.firestore.auth.User;
 import com.pixplicity.easyprefs.library.Prefs;
 import android.support.multidex.MultiDexApplication;
 
