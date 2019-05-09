@@ -1,4 +1,4 @@
-package com.glitterlabs.home.skeleton1;
+package com.glitterlabs.skeleton.fragments;
 
 
 import android.os.Bundle;
@@ -10,17 +10,23 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.glitterlabs.home.skeleton1.R;
+import com.glitterlabs.skeleton.activity.CreateProfileActivity;
+import com.glitterlabs.skeleton.model.Users;
+import com.glitterlabs.skeleton.utility.MainApplication;
+import com.google.firebase.firestore.auth.User;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class EnterAddress extends Fragment {
+public class EnterAddressFragment extends Fragment {
 
     private TextView addressTxt;
     private Button btnAddressSubmit;
 
 
-    public EnterAddress() {
+    public EnterAddressFragment() {
         // Required empty public constructor
     }
 
@@ -52,10 +58,10 @@ public class EnterAddress extends Fragment {
     private void proceed(String address) {
 
         MainApplication mainApplication = MainApplication.getInstance();
-        User user =mainApplication.getUser();
+        Users user =mainApplication.getUser();
         user.setmAddress(address);
         mainApplication.setUser(user);
-        CreateProfileActivity.fragmentManager.beginTransaction().replace(R.id.fragmentContainer,new EnterPhotoDemo(),null).addToBackStack(null).commit();
+        CreateProfileActivity.fragmentManager.beginTransaction().replace(R.id.fragmentContainer,new EnterProfilePictureFragment(),null).addToBackStack(null).commit();
     }
 
 }

@@ -1,11 +1,8 @@
-package com.glitterlabs.home.skeleton1;
+package com.glitterlabs.skeleton.fragments;
 
 
-import android.icu.text.DateIntervalFormat;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.AppCompatEditText;
 import android.text.TextUtils;
 import android.util.Log;
@@ -13,10 +10,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.glitterlabs.home.skeleton1.R;
+import com.glitterlabs.skeleton.activity.MainActivity;
+import com.glitterlabs.skeleton.fragments.ConfirmOTPFragment;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.FirebaseTooManyRequestsException;
 import com.google.firebase.auth.FirebaseAuth;
@@ -161,7 +160,7 @@ public class PhoneNumber extends Fragment {
                 mCallbacks);
     }
     private void sendVerification(String mVerificationId, PhoneAuthProvider.ForceResendingToken mResendToken){
-        ConfirmOTP confirmOTP = new ConfirmOTP();
+        ConfirmOTPFragment confirmOTP = new ConfirmOTPFragment();
         //FragmentManager fm = getFragmentManager();
         //FragmentTransaction ft = fm.beginTransaction();
         Bundle args = new Bundle();

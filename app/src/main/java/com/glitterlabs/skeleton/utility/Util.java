@@ -1,4 +1,4 @@
-package com.glitterlabs.home.skeleton1;
+package com.glitterlabs.skeleton.utility;
 
 import android.Manifest;
 import android.annotation.TargetApi;
@@ -11,7 +11,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 
-class Utility {
+class Util {
     public static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 123;
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)

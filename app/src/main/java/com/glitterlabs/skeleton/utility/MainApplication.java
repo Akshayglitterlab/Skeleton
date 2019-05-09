@@ -1,15 +1,18 @@
-package com.glitterlabs.home.skeleton1;
+package com.glitterlabs.skeleton.utility;
 
 import android.content.ContextWrapper;
-import com.glitterlabs.home.skeleton1.User;
-import com.google.android.gms.common.internal.Constants;
-import com.pixplicity.easyprefs.library.Prefs;
 
-public class MainApplication extends MultiDexApplication{
+
+import com.glitterlabs.skeleton.model.Users;
+import com.google.firebase.firestore.auth.User;
+import com.pixplicity.easyprefs.library.Prefs;
+import android.support.multidex.MultiDexApplication;
+
+public class MainApplication extends MultiDexApplication {
 
     static MainApplication mainApplication = null;
 
-    private User user;
+    private Users user;
 
 
     @Override
@@ -38,11 +41,11 @@ public class MainApplication extends MultiDexApplication{
         return mainApplication;
     }
 
-    public User getUser(){
+    public Users getUser(){
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(Users user) {
         this.user = user;
     }
 

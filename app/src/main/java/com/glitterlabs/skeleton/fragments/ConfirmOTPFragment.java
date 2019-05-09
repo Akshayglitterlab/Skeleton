@@ -1,4 +1,4 @@
-package com.glitterlabs.home.skeleton1;
+package com.glitterlabs.skeleton.fragments;
 
 
 import android.content.Intent;
@@ -13,6 +13,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.glitterlabs.home.skeleton1.R;
+import com.glitterlabs.skeleton.model.Users;
+import com.glitterlabs.skeleton.utility.Constant;
+import com.glitterlabs.skeleton.activity.CreateProfileActivity;
+import com.glitterlabs.skeleton.utility.MainApplication;
+
+import com.glitterlabs.skeleton.activity.HomeActivity;
+import com.glitterlabs.skeleton.activity.MainActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -21,8 +29,12 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
-
-import java.util.concurrent.Executor;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.auth.User;
 
 import static android.support.constraint.Constraints.TAG;
 
@@ -30,9 +42,10 @@ import static android.support.constraint.Constraints.TAG;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ConfirmOTP extends Fragment {
+public class ConfirmOTPFragment extends Fragment {
 
     private FirebaseAuth mAuth;
+    private FirebaseUser firebaseUser;
     public TextView textViewOTP;
     public Button submit;
 
@@ -40,16 +53,16 @@ public class ConfirmOTP extends Fragment {
     //public String OTP;
     private String verificationId;
 
+    private DatabaseReference databaseReference;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_confirm_ot, container, false);
-        verificationId = getArguments().getString("Id");
-        code = getArguments().getString("Token");
-        mAuth = FirebaseAuth.getInstance();
-        textViewOTP = view.findViewById(R.id.OTP_TextField);
-        submit = view.findViewById(R.id.btnConfOTP);
+
+        initView(view);
+
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,6 +83,17 @@ public class ConfirmOTP extends Fragment {
 
         return view;
     }
+
+    private void initView(View view) {
+        verificationId = getArguments().getString("Id");
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        code = getArguments().getString("Token");
+        mAuth = FirebaseAuth.getInstance();
+        firebaseUser = mAuth.getCurrentUser();
+        textViewOTP = view.findViewById(R.id.OTP_TextField);
+        submit = view.findViewById(R.id.btnConfOTP);
+    }
+
     private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
@@ -80,16 +104,22 @@ public class ConfirmOTP extends Fragment {
                             Log.d(TAG, "signInWithCredential:success");
 
                             FirebaseUser firebaseUser = task.getResult().getUser();
-                            firebaseUser.getUid();
-                            String id = firebaseUser.getUid();
-                            User user = new User();
-                            MainApplication mainApplication = MainApplication.getInstance();
-                            user.setmMobile(firebaseUser.getPhoneNumber());
+                            //firebaseUser.getUid();
+
+                            //String id = firebaseUser.getUid();
+                            //User user = new User();
+                            //MainApplication mainApplication = MainApplication.getInstance();
+                            checkExistingUser(firebaseUser);
+                            /*if (firebaseUser != null){
+                                Intent intent = new Intent(getActivity(), HomeActivity.class);
+                                ((MainActivity) getActivity()).startActivity(intent);
+                            }*/
+                            /*user.setmMobile(firebaseUser.getPhoneNumber());
                             user.setmUserID(firebaseUser.getUid());
                             mainApplication.setUser(user);
 
                             Intent intent = new Intent(getActivity(), CreateProfileActivity.class);
-                            ((MainActivity) getActivity()).startActivity(intent);
+                            ((MainActivity) getActivity()).startActivity(intent);*/
 
                             //
                             // ...
@@ -106,4 +136,34 @@ public class ConfirmOTP extends Fragment {
 
     }
 
+    private void checkExistingUser(final FirebaseUser firebaseUser) {
+        databaseReference.child(Constant.TEST).child(Constant.USERS).child(firebaseUser.getUid())
+                .addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(String.valueOf(dataSnapshot.getValue()) != "null"){
+
+                    Intent intent = new Intent(getActivity(), HomeActivity.class);
+                    intent.putExtra("userID",firebaseUser.getUid());
+                    startActivity(intent);
+
+                }else{
+                    MainApplication mainApplication = MainApplication.getInstance();
+                    Users user = new Users();
+                    user.setmMobile(firebaseUser.getPhoneNumber());
+                    user.setmUserID(firebaseUser.getUid());
+                    mainApplication.setUser(user);
+
+                    Intent intent = new Intent(getActivity(), CreateProfileActivity.class);
+                    ((MainActivity) getActivity()).startActivity(intent);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                String strError = error.getMessage();
+            }
+        });
+    }
 }

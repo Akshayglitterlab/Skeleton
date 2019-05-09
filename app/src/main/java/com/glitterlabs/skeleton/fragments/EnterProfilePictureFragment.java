@@ -1,13 +1,13 @@
-package com.glitterlabs.home.skeleton1;
+package com.glitterlabs.skeleton.fragments;
 
 
 import android.Manifest;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.ContextWrapper;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -32,14 +32,15 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.google.android.gms.tasks.Continuation;
-import com.google.android.gms.tasks.OnCompleteListener;
+import com.glitterlabs.home.skeleton1.R;
+import com.glitterlabs.skeleton.model.Users;
+import com.glitterlabs.skeleton.utility.Constant;
+import com.glitterlabs.skeleton.utility.MainApplication;
+
+import com.glitterlabs.skeleton.activity.HomeActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.common.net.InternetDomainName;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -60,7 +61,7 @@ import jp.wasabeef.glide.transformations.CropCircleTransformation;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class EnterPhotoDemo extends Fragment {
+public class EnterProfilePictureFragment extends Fragment {
 
     private static final int SELECT_FILE = 1001;
     private static final int REQUEST_CAMERA = 1002;
@@ -78,7 +79,7 @@ public class EnterPhotoDemo extends Fragment {
 
     private ProgressDialog pd;
 
-    private User user;
+    private Users user;
     private MainApplication mainApplication;
 
     private String userChoosenTask;
@@ -91,8 +92,11 @@ public class EnterPhotoDemo extends Fragment {
     private StorageReference sRef;
     private String strPicUrl;
 
+    SharedPreferences sharedpreferences;
+    public static final Integer MyPREFERENCES = 1 ;
 
-    public EnterPhotoDemo() {
+
+    public EnterProfilePictureFragment() {
         // Required empty public constructor
     }
 
@@ -120,9 +124,9 @@ public class EnterPhotoDemo extends Fragment {
                 user = mainApplication.getUser();
 
                 if (urlPic != null) {
-                    user.setmPicURL(urlPic);
+                    user.setmPicUrl(urlPic);
                 }else{
-                    user.setmPicURL("null");
+                    user.setmPicUrl("null");
                 }
                 saveDataFirebase(user);
             }
@@ -147,7 +151,7 @@ public class EnterPhotoDemo extends Fragment {
         });
     }
 
-    private void saveDataFirebase(User user) {
+    private void saveDataFirebase(Users user) {
 
         Map<String,Object> childUpdates = new HashMap<>();
         if(String.valueOf(user.getmMobile())!="null")
@@ -159,7 +163,10 @@ public class EnterPhotoDemo extends Fragment {
         databaseReference.child(user.getmUserID()).updateChildren(childUpdates);
         //databaseReference = FirebaseDatabase.getInstance().getReference().child();
         Toast.makeText(getActivity(), "User Created", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(getActivity(),HomeActivity.class);
+
+        Prefs.putString("userID", user.getmUserID());
+        Prefs.putInt("LoginStatus",1);
+        Intent intent = new Intent(getActivity(), HomeActivity.class);
         startActivity(intent);
     }
 
@@ -323,6 +330,7 @@ public class EnterPhotoDemo extends Fragment {
 
         btnSubmitProfile = (Button)view.findViewById(R.id.btnSubmitProfile);
         selectImageView = (ImageView)view.findViewById(R.id.profile_image);
+        //sharedpreferences = this.getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
         fm = getFragmentManager();
         ft = fm.beginTransaction();

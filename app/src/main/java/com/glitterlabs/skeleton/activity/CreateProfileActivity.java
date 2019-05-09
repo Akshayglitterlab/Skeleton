@@ -1,12 +1,13 @@
-package com.glitterlabs.home.skeleton1;
+package com.glitterlabs.skeleton.activity;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.ProgressBar;
+
+import com.glitterlabs.home.skeleton1.R;
+import com.glitterlabs.skeleton.fragments.EnterNameFragment;
 
 
 public class CreateProfileActivity extends AppCompatActivity {
@@ -28,7 +29,7 @@ public class CreateProfileActivity extends AppCompatActivity {
                 return;
             }
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            EnterName enterName = new EnterName();
+            EnterNameFragment enterName = new EnterNameFragment();
             fragmentTransaction.add(R.id.fragmentContainer,enterName,null);
             fragmentTransaction.commit();
         }

@@ -5,7 +5,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="create_account">Create Account</string>
     <string name="we_will_send_you_one_time_password_otp">We will send you one time password otp</string>
-    <string name="skeleton_app">Skeleton App</string>
     <string name="we_will_send_you_one_time_password">we will send you one time password</string>
     <string name="create_profile">Create Profile</string>
     <string name="profile">Profile</string>
@@ -13,4 +12,6 @@
     <string name="feedback">Feedback</string>
     <string name="logout">Logout</string>
     <string name="share_app">Share App</string>
+    <string name="glitter_technology_venture_llc">Glitter Technology Venture LLC</string>
+    <string name="skeleton_app">Skeleton App</string>
 </resources>
