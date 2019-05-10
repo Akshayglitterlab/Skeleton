@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/confirm_otp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:id="@+id/confirm_otp"
     android:background="@color/icons"
     android:focusable="true"
-    android:focusableInTouchMode="true">
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_marginTop="@dimen/_80sdp"
         android:layout_below="@+id/textView1"
-        >
+        android:layout_marginTop="@dimen/_80sdp"
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
@@ -29,12 +28,12 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView1"
             android:layout_centerHorizontal="true"
+            android:layout_marginLeft="@dimen/_30sdp"
             android:layout_marginTop="@dimen/_30sdp"
             android:layout_marginRight="@dimen/_30sdp"
-            android:layout_marginLeft="@dimen/_30sdp"
-            android:textColor="@color/primary_text"
             android:text="Enter your Name"
             android:textAlignment="center"
+            android:textColor="@color/primary_text"
             android:textSize="18sp" />
 
         <android.support.design.widget.TextInputLayout
@@ -44,18 +43,18 @@
             android:layout_below="@+id/textView2"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
+            android:layout_marginLeft="@dimen/_30sdp"
             android:layout_marginTop="@dimen/_30sdp"
-            android:layout_marginRight="@dimen/_30sdp"
-            android:layout_marginLeft="@dimen/_30sdp">
+            android:layout_marginRight="@dimen/_30sdp">
 
             <android.support.v7.widget.AppCompatEditText
                 android:id="@+id/nameText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/phone_Text"
-                android:textColor="@color/primary_text"
                 android:hint="Enter Name"
-                android:inputType="text" />
+                android:inputType="text"
+                android:textColor="@color/primary_text" />
 
             <requestFocus />
 
@@ -68,15 +67,15 @@
             android:layout_below="@+id/textView3"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="@dimen/_30sdp"
             android:layout_marginLeft="@dimen/_30sdp"
+            android:layout_marginTop="@dimen/_30sdp"
             android:layout_marginRight="@dimen/_30sdp"
+            android:background="@color/colorPrimary"
             android:gravity="center"
-            android:textColor="@color/White"
+            android:text="Next"
             android:textAllCaps="false"
-            android:textSize="@dimen/_18sdp"
-            android:background="@drawable/button_background"
-            android:text="Next" />
+            android:textColor="@color/white"
+            android:textSize="@dimen/_18sdp" />
 
 
     </LinearLayout>

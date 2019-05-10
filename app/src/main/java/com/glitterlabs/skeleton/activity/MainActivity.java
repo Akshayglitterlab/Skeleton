@@ -1,50 +1,50 @@
 package com.glitterlabs.skeleton.activity;
 
 import android.content.Intent;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import com.glitterlabs.skeleton.R;
-import com.glitterlabs.skeleton.fragments.PhoneNumber;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static FragmentManager fragmentManager;
+    private Button btnLogin, btnSignUp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+        initView();
+        registerEvents();
+    }
 
-        if (firebaseUser != null){
-            Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
-
-            String uid = firebaseUser.getUid();
-            intent.putExtra("userID",uid);
-            startActivity(intent);
-        }
-
-        fragmentManager = getSupportFragmentManager();
-
-        if (findViewById(R.id.fragmentContainer) != null)
-        {
-            if (savedInstanceState != null)
-            {
-                return;
+    private void registerEvents() {
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loginSignUp();
             }
+        });
 
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            PhoneNumber phoneNumber = new PhoneNumber();
-            fragmentTransaction.add(R.id.fragmentContainer,phoneNumber,null);
-            fragmentTransaction.commit();
+        btnSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loginSignUp();
+            }
+        });
+    }
 
-        }
+    private void loginSignUp(){
+        Intent intent = new Intent(MainActivity.this,LoginActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    private void initView() {
+        btnLogin = findViewById(R.id.btnLogin);
+        btnSignUp = findViewById(R.id.btnSignUp);
     }
 }

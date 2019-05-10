@@ -61,7 +61,9 @@ public class EnterAddressFragment extends Fragment {
         Users user =mainApplication.getUser();
         user.setmAddress(address);
         mainApplication.setUser(user);
-        CreateProfileActivity.fragmentManager.beginTransaction().replace(R.id.fragmentContainer,new EnterProfilePictureFragment(),null).addToBackStack(null).commit();
+        CreateProfileActivity.fragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainer,new EnterProfilePictureFragment(),null).addToBackStack(null).commit();
+        getActivity().finish();
     }
 
 }

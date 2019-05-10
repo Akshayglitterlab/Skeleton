@@ -16,17 +16,11 @@ public class HomeActivity extends AppCompatActivity {
 
     Toolbar toolbar;
 
-    FirebaseAuth firebaseAuth;
-    FirebaseUser firebaseUser;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
-        String s = getIntent().getStringExtra("userID");
-
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
     }
@@ -47,14 +41,17 @@ public class HomeActivity extends AppCompatActivity {
                 String ss = getIntent().getStringExtra("userID");
                 profileActivity.putExtra("userID",ss);
                 startActivity(profileActivity);
+                finish();
                 break;
             case R.id.AboutUs:
                 Intent aboutUsActivity = new Intent(HomeActivity.this, AboutUsActivity.class);
                 startActivity(aboutUsActivity);
+                finish();
                 break;
             case R.id.Feedback:
                 Intent FeedbackActivity = new Intent(HomeActivity.this, com.glitterlabs.skeleton.activity.FeedbackActivity.class);
                 startActivity(FeedbackActivity);
+                finish();
                 break;
             case R.id.shareApp:
                 try {
@@ -66,6 +63,7 @@ public class HomeActivity extends AppCompatActivity {
                             + BuildConfig.APPLICATION_ID +"\n\n";
                     shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
                     startActivity(Intent.createChooser(shareIntent, "choose one"));
+                    finish();
                 } catch(Exception e) {
                     //e.toString();
                 }
@@ -76,9 +74,9 @@ public class HomeActivity extends AppCompatActivity {
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
+                    finish();
                 break;
         }
-
         return super.onOptionsItemSelected(item);
     }
 }

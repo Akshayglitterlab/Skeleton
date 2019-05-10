@@ -93,10 +93,6 @@ public class EnterProfilePictureFragment extends Fragment {
     private StorageReference sRef;
     private String strPicUrl;
 
-    SharedPreferences sharedpreferences;
-    public static final Integer MyPREFERENCES = 1 ;
-
-
     public EnterProfilePictureFragment() {
         // Required empty public constructor
     }
@@ -107,11 +103,9 @@ public class EnterProfilePictureFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_enter_photo_demo, container, false);
-
-        initFirebase();
         initViews(view);
         registerEvents();
-
+        initFirebase();
         return view;
     }
 
@@ -319,9 +313,8 @@ public class EnterProfilePictureFragment extends Fragment {
 
     private void initViews(View view) {
 
-        btnSubmitProfile = (Button)view.findViewById(R.id.btnSubmitProfile);
-        selectImageView = (ImageView)view.findViewById(R.id.profile_image);
-        //sharedpreferences = this.getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        btnSubmitProfile = view.findViewById(R.id.btnSubmitProfile);
+        selectImageView = view.findViewById(R.id.profile_image);
 
         fm = getFragmentManager();
         ft = fm.beginTransaction();
@@ -367,10 +360,3 @@ public class EnterProfilePictureFragment extends Fragment {
     }
 
 }
-
-    /*public String getRealPathFromURI1(Context context,Uri contentUri) {
-        Cursor cursor = context.getContentResolver().query(contentUri, null, null, null, null);
-        cursor.moveToFirst();
-        int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
-        return cursor.getString(idx);
-    }*/

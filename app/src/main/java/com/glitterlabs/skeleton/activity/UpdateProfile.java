@@ -43,7 +43,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.auth.User;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -64,20 +63,17 @@ public class UpdateProfile extends AppCompatActivity {
     private static final int REQUEST_CAMERA = 1002;
     private static final int PERMISSION_REQUEST_CODE = 105;
 
-
     private DatabaseReference databaseReference;
-
-    public Button btnChangeSubmit;
+    private FirebaseUser firebaseUser;
+    private Button btnChangeSubmit;
 
     private String userChoosenTask;
-
     private Users user;
-
     private Bitmap bitmap;
 
     Toolbar toolbar;
     public TextView phoneNumber;
-    public EditText userName, userAddress;
+    public EditText edtUserName, edtUserAddress;
     public TextView editProfile;
 
     public ImageView UserProfile;
@@ -87,10 +83,7 @@ public class UpdateProfile extends AppCompatActivity {
     private DatabaseReference mDatabaseRef;
 
     private String strPicUrl;
-
-    FirebaseUser firebaseUser;
-
-    String userId;
+    private String userId;
     private StorageReference sRef;
 
     @Override
@@ -107,9 +100,9 @@ public class UpdateProfile extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 user = dataSnapshot.getValue(Users.class);
                 phoneNumber.setText(user.getmMobile());
-                userName.setText(user.getmName());
+                edtUserName.setText(user.getmName());
 
-                userAddress.setText(user.getmAddress());
+                edtUserAddress.setText(user.getmAddress());
 
                 if (String.valueOf(user.getmPicUrl()) != null) {
                     Glide.with(UpdateProfile.this)
@@ -157,11 +150,8 @@ public class UpdateProfile extends AppCompatActivity {
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
                 Uri tempUri = getImageUri(UpdateProfile.this, bitmap);
-
                 uploadFile(tempUri);
-
             }
-
         }
     }
 
@@ -172,15 +162,14 @@ public class UpdateProfile extends AppCompatActivity {
         return Uri.parse(path);
     }
 
-
     private void registerEvents() {
 
         btnChangeSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                String newUserName = userName.getText().toString().trim();
-                String newUserAddress = userAddress.getText().toString().trim();
+                String newUserName = edtUserName.getText().toString().trim();
+                String newUserAddress = edtUserAddress.getText().toString().trim();
 
                 Map<String, Object> childUpdates = new HashMap<>();
                 childUpdates.put("mName", newUserName);
@@ -213,6 +202,7 @@ public class UpdateProfile extends AppCompatActivity {
         });
 
     }
+
     private void requestPermission() {
         ActivityCompat.requestPermissions(UpdateProfile.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.CAMERA}, PERMISSION_REQUEST_CODE);
     }
@@ -268,9 +258,6 @@ public class UpdateProfile extends AppCompatActivity {
 
     private void uploadFile(Uri uri){
         if (uri != null){
-            /*MainApplication mainApplication = MainApplication.getInstance();
-            User user =mainApplication.getUser();
-            user.getmUserID();*/
             final ProgressDialog progressDialog = new ProgressDialog(UpdateProfile.this);
             progressDialog.setTitle("Uploading");
             progressDialog.show();
@@ -336,37 +323,18 @@ public class UpdateProfile extends AppCompatActivity {
     }
 
     private void initViews() {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Update Profile");
+        toolbar = findViewById(R.id.toolbar);
+        //toolbar.setTitle("Update Profile");
+        //setSupportActionBar(toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
         databaseReference = FirebaseDatabase.getInstance().getReference();
         userId = getIntent().getStringExtra("user");
-        UserProfile = (ImageView)findViewById(R.id.profile_image);
+        UserProfile = findViewById(R.id.profile_image);
         //editProfile = (TextView)findViewById(R.id.editUserProfile);
-        phoneNumber = (TextView)findViewById(R.id.phone_number);
-        userName = (EditText) findViewById(R.id.userName);
-        userAddress = (EditText) findViewById(R.id.userAddress);
-        btnChangeSubmit = (Button)findViewById(R.id.changeSubmit);
+        phoneNumber = findViewById(R.id.phone_number);
+        edtUserName = findViewById(R.id.userName);
+        edtUserAddress = findViewById(R.id.userAddress);
+        btnChangeSubmit = findViewById(R.id.changeSubmit);
     }
 }
-
-
-/*private void writeNewUser(String name, String address) {
-        User user = new User(name, address);
-
-        mDatabase.child("users").child(userId).setValue(user);
-    }*/
-
-    /*private void saveDataFirebase(User user) {
-        Map<String,Object> childUpdates = new HashMap<>();
-        if(String.valueOf(user.getmMobile())!="null")
-            childUpdates.put("mUserId",user.getmUserID());
-        //childUpdates.put("mMobile", user.getmMobile());
-        childUpdates.put("mName",user.getmName());
-        childUpdates.put("mAddress", user.getmAddress());
-        childUpdates.put("mPicUrl",user.getmPicUrl());
-        databaseReference.child(user.getmUserID()).updateChildren(childUpdates);
-        Toast.makeText(UpdateProfile.this, "User Created", Toast.LENGTH_SHORT).show();
-
-    }
-*/

@@ -7,7 +7,6 @@ import android.os.Bundle;
 
 import com.glitterlabs.skeleton.R;
 
-
 public class SplashActivity extends AppCompatActivity {
 
     private static int SPLASH_TIME_OUT = 2000;

@@ -32,6 +32,7 @@ public class CreateProfileActivity extends AppCompatActivity {
             EnterNameFragment enterName = new EnterNameFragment();
             fragmentTransaction.add(R.id.fragmentContainer,enterName,null);
             fragmentTransaction.commit();
+            finish();
         }
 
     }
