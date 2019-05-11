@@ -1,11 +1,8 @@
-package com.glitterlabs.home.skeleton1;
+package com.glitterlabs.skeleton.fragments;
 
 
-import android.icu.text.DateIntervalFormat;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.AppCompatEditText;
 import android.text.TextUtils;
 import android.util.Log;
@@ -13,10 +10,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.glitterlabs.skeleton.R;
+import com.glitterlabs.skeleton.activity.MainActivity;
+import com.glitterlabs.skeleton.fragments.ConfirmOTPFragment;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.FirebaseTooManyRequestsException;
 import com.google.firebase.auth.FirebaseAuth;
@@ -82,14 +81,6 @@ public class PhoneNumber extends Fragment {
                     return;
                 }
                 sendVerificationCode(phone1);
-                /*PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                        phone1,        // Phone number to verify
-                        60,                 // Timeout duration
-                        TimeUnit.SECONDS,   // Unit of timeout
-                        getActivity(),               // Activity (for callback binding)
-                        mCallbacks);        // OnVerificationStateChangedCallbacks*/
-
-
 
             }
 
@@ -161,19 +152,20 @@ public class PhoneNumber extends Fragment {
                 mCallbacks);
     }
     private void sendVerification(String mVerificationId, PhoneAuthProvider.ForceResendingToken mResendToken){
-        ConfirmOTP confirmOTP = new ConfirmOTP();
-        //FragmentManager fm = getFragmentManager();
-        //FragmentTransaction ft = fm.beginTransaction();
+        ConfirmOTPFragment confirmOTP = new ConfirmOTPFragment();
         Bundle args = new Bundle();
         args.putString("Id", mVerificationId);
         args.putString("Token", String.valueOf(mResendToken));
         confirmOTP.setArguments(args);
         MainActivity.fragmentManager.beginTransaction().replace(R.id.fragmentContainer,confirmOTP,null).commit();
-        //ft.replace(R.id.fragmentContainer,confirmOTP,null).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN).addToBackStack(null).commit();
-
     }
 
 }
 
-
+ /*PhoneAuthProvider.getInstance().verifyPhoneNumber(
+                        phone1,        // Phone number to verify
+                        60,                 // Timeout duration
+                        TimeUnit.SECONDS,   // Unit of timeout
+                        getActivity(),               // Activity (for callback binding)
+                        mCallbacks);        // OnVerificationStateChangedCallbacks*/
 

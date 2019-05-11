@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/White"
-    tools:context=".ProfileActivity">
+    tools:context=".activity.ProfileActivity">
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
@@ -20,8 +20,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_marginTop="@dimen/_60sdp"
+        android:layout_marginTop="@dimen/_10sdp"
         >
+
 
         <FrameLayout
             android:layout_width="@dimen/_100sdp"
@@ -38,23 +39,8 @@
                 app:civ_border_color="@color/colorPrimary"
                 app:civ_border_width="2dp" />
 
-            <ImageView
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:layout_width="@dimen/_30sdp"
-                android:layout_height="@dimen/_30sdp"
-                android:layout_gravity="right|bottom"
-                android:background="@drawable/edit_circle"/>
-
         </FrameLayout>
-        <TextView
-            android:id="@+id/phone_number"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="1234567890"
-            android:textSize="@dimen/_18sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:gravity="center"/>
+
 
         <TextView
             android:id="@+id/userName"
@@ -62,23 +48,34 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="@dimen/_30sdp"
-            android:layout_marginTop="@dimen/_30sdp"
+            android:layout_marginTop="@dimen/_20sdp"
             android:layout_marginRight="@dimen/_30sdp"
             android:textColor="@color/primary_text"
-            android:textSize="42sp"
+            android:textSize="@dimen/_16sdp"
             android:gravity="center"
             android:layout_gravity="center"
             />
+
+        <TextView
+            android:id="@+id/phone_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="1234567890"
+            android:textSize="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:gravity="center"/>
+
         <TextView
             android:id="@+id/userAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="@dimen/_30sdp"
-            android:layout_marginTop="@dimen/_30sdp"
+            android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginRight="@dimen/_30sdp"
             android:textColor="@color/primary_text"
-            android:textSize="24sp"
+            android:textSize="@dimen/_12sdp"
             android:layout_gravity="center"
             android:gravity="center"
             />

@@ -1,19 +1,19 @@
-package com.glitterlabs.home.skeleton1;
+package com.glitterlabs.skeleton.model;
 
 import com.google.firebase.database.Exclude;
 
 import java.util.HashMap;
 import java.util.Map;
 
-class User {
+public class Users {
 
     private String mName;
     private String mMobile;
     private String mAddress;
-    private String mPicURL;
+    private String mPicUrl;
     private String mUserID;
 
-    public User(){
+    public Users(){
 
     }
 
@@ -21,13 +21,22 @@ class User {
         return mName;
     }
 
-    public User(String mUserID, String mMobile, String mName, String mAddress, String mPicURL){
+    public Users(String mUserID, String mName, String mAddress, String mPicUrl){
 
-        this.mPicURL = mUserID;
+        this.mUserID = mUserID;
+        this.mName = mName;
+        this.mAddress = mAddress;
+        this.mPicUrl = mPicUrl;
+
+    }
+
+    public Users(String mUserID, String mMobile, String mName, String mAddress, String mPicUrl){
+
+        this.mUserID = mUserID;
         this.mMobile = mMobile;
         this.mName = mName;
         this.mAddress = mAddress;
-        this.mPicURL = mPicURL;
+        this.mPicUrl = mPicUrl;
 
     }
 
@@ -43,12 +52,12 @@ class User {
         this.mMobile = mMobile;
     }
 
-    public String getmPicURL() {
-        return mPicURL;
+    public String getmPicUrl() {
+        return mPicUrl;
     }
 
-    public void setmPicURL(String mPicURL) {
-        this.mPicURL = mPicURL;
+    public void setmPicUrl(String mPicUrl) {
+        this.mPicUrl = mPicUrl;
     }
 
     public String getmUserID() {
@@ -74,7 +83,7 @@ class User {
         result.put("mMobile", mMobile);
         result.put("mName", mName);
         result.put("mAddress", mAddress);
-        result.put("mPicUrl", mPicURL);
+        result.put("mPicUrl", mPicUrl);
 
 
 

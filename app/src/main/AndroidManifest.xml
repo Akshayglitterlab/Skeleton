@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.glitterlabs.home.skeleton1">
+    package="com.glitterlabs.skeleton">
 
     <uses-permission android:name="android.permission.CAMERA" />
 
@@ -21,24 +21,27 @@
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <application
-        android:name=".MainApplication"
+        android:name=".utility.MainApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/skeleton_app"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"/>
-        <activity android:name=".ProfileActivity" />
-        <activity android:name=".HomeActivity" />
-        <activity android:name=".CreateProfileActivity" />
-        <activity android:name=".Splash">
+        <activity android:name=".activity.AboutUsActivity"></activity>
+        <activity android:name=".activity.FeedbackActivity" />
+        <activity android:name=".activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.UpdateProfile" />
+        <activity android:name=".activity.MainActivity" />
+        <activity android:name=".activity.ProfileActivity" />
+        <activity android:name=".activity.HomeActivity" />
+        <activity android:name=".activity.CreateProfileActivity" />
     </application>
 
 </manifest>
