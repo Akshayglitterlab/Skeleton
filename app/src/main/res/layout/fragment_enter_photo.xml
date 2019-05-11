@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/confirm_otp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:id="@+id/confirm_otp"
     android:background="@color/icons"
     android:focusable="true"
-    android:focusableInTouchMode="true">
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_marginTop="@dimen/_80sdp"
         android:layout_below="@+id/textView1"
-        >
+        android:layout_marginTop="@dimen/_80sdp"
+        android:orientation="vertical">
 
 
         <TextView
@@ -23,38 +22,35 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView1"
             android:layout_centerHorizontal="true"
+            android:layout_marginLeft="@dimen/_30sdp"
             android:layout_marginTop="@dimen/_30sdp"
             android:layout_marginRight="@dimen/_30sdp"
-            android:layout_marginLeft="@dimen/_30sdp"
-            android:textColor="@color/primary_text"
             android:text="Add your photo"
             android:textAlignment="center"
+            android:textColor="@color/primary_text"
             android:textSize="18sp" />
 
 
-       <FrameLayout
-           android:layout_width="@dimen/_100sdp"
-           android:layout_height="@dimen/_100sdp"
-           android:layout_gravity="center"
-           android:layout_marginTop="@dimen/_20sdp">
+        <FrameLayout
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_100sdp"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_20sdp">
 
-           <de.hdodenhof.circleimageview.CircleImageView
-               xmlns:app="http://schemas.android.com/apk/res-auto"
-               android:id="@+id/profile_image"
-               android:layout_width="match_parent"
-               android:layout_height="match_parent"
-               android:src="@drawable/ic_blank_profile"
-               app:civ_border_color="@color/colorPrimary"
-               app:civ_border_width="2dp" />
+            <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/profile_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:civ_border_color="@color/colorPrimary"
+                app:civ_border_width="2dp" />
 
-           <ImageView
-               xmlns:app="http://schemas.android.com/apk/res-auto"
-               android:layout_width="@dimen/_30sdp"
-               android:layout_height="@dimen/_30sdp"
-               android:layout_gravity="right|bottom"
-               android:background="@drawable/edit_circle"/>
+            <ImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_gravity="right|bottom"
+                android:background="@drawable/ic_edit" />
 
-       </FrameLayout>
+        </FrameLayout>
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/btnSubmitProfile"
@@ -66,10 +62,10 @@
             android:layout_marginLeft="@dimen/_30sdp"
             android:layout_marginTop="@dimen/_30sdp"
             android:layout_marginRight="@dimen/_30sdp"
-            android:background="@drawable/button_background"
+            android:background="@color/colorPrimary"
             android:gravity="center"
-            android:textAllCaps="false"
             android:text="Submit"
+            android:textAllCaps="false"
             android:textSize="20sp" />
 
 

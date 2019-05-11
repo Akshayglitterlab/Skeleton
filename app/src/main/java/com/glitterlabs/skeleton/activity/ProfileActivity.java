@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.glitterlabs.skeleton.BuildConfig;
 import com.glitterlabs.skeleton.R;
 import com.glitterlabs.skeleton.model.Users;
@@ -24,13 +25,14 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.pixplicity.easyprefs.library.Prefs;
 
 
 public class ProfileActivity extends AppCompatActivity {
 
     Toolbar toolbar;
-    FirebaseAuth firebaseAuth;
-    FirebaseUser firebaseUser;
+/*    FirebaseAuth firebaseAuth;
+    FirebaseUser firebaseUser;*/
 
     DatabaseReference databaseReference;
     private Users user;
@@ -50,18 +52,14 @@ public class ProfileActivity extends AppCompatActivity {
         userId = getIntent().getStringExtra("userID");
 
         initViews();
-        registerEvents();
 
-        databaseReference.child(Constant.TEST).child(Constant.USERS).child(userId).addValueEventListener(new ValueEventListener() {
+        databaseReference.child(Constant.TEST).child(Constant.USERS).child(Prefs.getString("userID",null)).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 user =dataSnapshot.getValue(Users.class);
                 phoneNumber.setText(user.getmMobile());
                 userName.setText(user.getmName());
-
                 userAddress.setText(user.getmAddress());
-
-                //userPhoto.setImageIcon(user.getmPicURL());
 
                 if (String.valueOf(user.getmPicUrl())!= null){
                     Glide.with(ProfileActivity.this)
@@ -80,26 +78,15 @@ public class ProfileActivity extends AppCompatActivity {
 
     }
 
-    private void registerEvents() {
-        /*editProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent updateprofile = new Intent(getApplicationContext(), UpdateProfile.class).putExtra("user", userId);
-                        startActivity(updateprofile);
-            }
-        });*/
-    }
-
-
     private void initViews() {
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("User Profile");
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        userPhoto = (ImageView)findViewById(R.id.profile_image);
-        phoneNumber = (TextView)findViewById(R.id.phone_number);
-        userName = (TextView)findViewById(R.id.userName);
-        userAddress = (TextView) findViewById(R.id.userAddress);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        userPhoto = findViewById(R.id.profile_image);
+        phoneNumber = findViewById(R.id.phone_number);
+        userName = findViewById(R.id.userName);
+        userAddress = findViewById(R.id.userAddress);
     }
 
     @Override
@@ -115,31 +102,24 @@ public class ProfileActivity extends AppCompatActivity {
         switch (id){
             case R.id.editProfile:
                 Intent profileActivity = new Intent(ProfileActivity.this, UpdateProfile.class);
-                /*String ss = getIntent().getStringExtra("userID");
-                profileActivity.putExtra("userID",ss);*/
+                profileActivity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(profileActivity);
+                finish();
                 break;
             case R.id.AboutUs:
                 Intent aboutUsActivity = new Intent(ProfileActivity.this, AboutUsActivity.class);
+                aboutUsActivity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(aboutUsActivity);
+                finish();
                 break;
             case R.id.Feedback:
-                Intent FeedbackActivity = new Intent(ProfileActivity.this, com.glitterlabs.skeleton.activity.FeedbackActivity.class);
-                startActivity(FeedbackActivity);
+                Intent feedbackActivity = new Intent(ProfileActivity.this, com.glitterlabs.skeleton.activity.FeedbackActivity.class);
+                feedbackActivity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(feedbackActivity);
+                finish();
                 break;
             case R.id.shareApp:
-                try {
-                    Intent shareIntent = new Intent(Intent.ACTION_SEND);
-                    shareIntent.setType("text/plain");
-                    shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Skeleton App");
-                    String shareMessage= "\nLet me recommend you this application\n\n";
-                    shareMessage = shareMessage + "https://play.google.com/store/apps/details?id="
-                            + BuildConfig.APPLICATION_ID +"\n\n";
-                    shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
-                    startActivity(Intent.createChooser(shareIntent, "choose one"));
-                } catch(Exception e) {
-                    //e.toString();
-                }
+                shareApp();
                 break;
             case R.id.Logout:
                 FirebaseAuth.getInstance().signOut();
@@ -147,9 +127,25 @@ public class ProfileActivity extends AppCompatActivity {
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
+                finish();
                 break;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void shareApp() {
+        try {
+            Intent shareIntent = new Intent(Intent.ACTION_SEND);
+            shareIntent.setType("text/plain");
+            shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Skeleton App");
+            String shareMessage= "\nLet me recommend you this application\n\n";
+            shareMessage = shareMessage + "https://play.google.com/store/apps/details?id="
+                    + BuildConfig.APPLICATION_ID +"\n\n";
+            shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
+            startActivity(Intent.createChooser(shareIntent, "choose one"));
+        } catch(Exception e) {
+            //e.toString();
+        }
     }
 }

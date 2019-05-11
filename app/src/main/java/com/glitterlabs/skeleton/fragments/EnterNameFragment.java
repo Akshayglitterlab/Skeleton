@@ -14,8 +14,6 @@ import com.glitterlabs.skeleton.R;
 import com.glitterlabs.skeleton.activity.CreateProfileActivity;
 import com.glitterlabs.skeleton.model.Users;
 import com.glitterlabs.skeleton.utility.MainApplication;
-import com.google.firebase.database.DatabaseReference;
-
 
 
 /**
@@ -26,12 +24,9 @@ public class EnterNameFragment extends Fragment {
     private TextView nameTxt;
     private Button btnNext;
 
-    DatabaseReference addName;
-
     public EnterNameFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,24 +47,14 @@ public class EnterNameFragment extends Fragment {
                 }
             }
         });
-
         return view;
     }
     private void proceed(String Name){
         MainApplication mainApplication = MainApplication.getInstance();
         Users user = mainApplication.getUser();
-        //MainApplication mainApplication = MainApplication.getInstance();
         user.setmName(Name);
         mainApplication.setUser(user);
         CreateProfileActivity.fragmentManager.beginTransaction().
                 replace(R.id.fragmentContainer,new EnterAddressFragment(),null).addToBackStack(null).commit();
-
     }
-
 }
-
-/*
-addName = FirebaseDatabase.getInstance().getReference("user");
-        String id = addName.push().getKey();
-        User user = new User(id,Name);
-        addName.child(id).setValue(user);*/

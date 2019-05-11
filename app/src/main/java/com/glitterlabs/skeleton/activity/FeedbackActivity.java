@@ -48,7 +48,7 @@ public class FeedbackActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //dismiss();
-                Intent intent = new Intent(FeedbackActivity.this, HomeActivity.class)
+                Intent intent = new Intent(FeedbackActivity.this, ProfileActivity.class)
                         .putExtra("userID",Prefs.getString("userID",null));
                 startActivity(intent);
             }

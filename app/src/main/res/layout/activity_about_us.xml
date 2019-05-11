@@ -30,36 +30,36 @@
         <ImageView
             android:layout_width="@dimen/_80sdp"
             android:layout_height="@dimen/_80sdp"
-            android:src="@drawable/my_app"/>
+            android:src="@drawable/ic_android_app_logo" />
 
         <TextView
             android:id="@+id/appName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/skeleton_app"
-            android:textStyle="bold"
-            android:textSize="@dimen/_20sdp"
             android:layout_marginTop="@dimen/_20sdp"
-            android:textColor="@color/colorPrimary" />
+            android:text="@string/skeleton_app"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/_20sdp"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:text="Demo App"
             android:textColor="@color/colorPrimary"
-            android:textSize="@dimen/_10sdp"
-            android:gravity="center_horizontal"/>
+            android:textSize="@dimen/_10sdp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/skeleton_app"
             android:layout_marginLeft="@dimen/_8sdp"
-            android:layout_marginRight="@dimen/_8sdp"
-            android:textColor="@color/Black"
-            android:textSize="@dimen/_12sdp"
             android:layout_marginTop="@dimen/_5sdp"
-            android:gravity="center_horizontal"/>
+            android:layout_marginRight="@dimen/_8sdp"
+            android:gravity="center_horizontal"
+            android:text="@string/skeleton_app"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12sdp" />
 
         <TextView
             android:id="@+id/developby"
@@ -67,7 +67,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_30sdp"
             android:text="Developed By"
-            android:textColor="@color/Black"
+            android:textColor="@color/black"
             android:textSize="@dimen/_12sdp" />
 
         <TextView
@@ -84,16 +84,16 @@
             android:layout_height="wrap_content"
             android:text="www.glitterlabs.com"
             android:textColor="@color/colorPrimary"
-            android:textSize="@dimen/_12sdp"/>
+            android:textSize="@dimen/_12sdp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Copyright@2019"
-            android:textColor="@color/Black"
             android:layout_marginTop="@dimen/_30sdp"
-            android:textSize="@dimen/_12sdp"
-            android:gravity="center_horizontal"/>
+            android:gravity="center_horizontal"
+            android:text="Copyright@2019"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12sdp" />
 
     </LinearLayout>
 

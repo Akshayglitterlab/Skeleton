@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/White"
+    android:background="@color/white"
     android:orientation="vertical"
     tools:context=".activity.HomeActivity">
 
     <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:id="@+id/toolbar"
         android:background="@color/colorPrimary"
         app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
@@ -20,10 +20,10 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="In home"
-        android:gravity="center"
         android:layout_gravity="center"
-        android:textColor="@color/Black"
-        android:textSize="@dimen/_20sdp"/>
+        android:gravity="center"
+        android:text="In home"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_20sdp" />
 
 </LinearLayout>

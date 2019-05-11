@@ -15,4 +15,9 @@
     <string name="glitter_technology_venture_llc">Glitter Technology Venture LLC</string>
     <string name="skeleton_app">Skeleton App</string>
     <string name="edit_profile">Edit Profile</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="login">Login</string>
+    <string name="next">Next</string>
+    <string name="enter_mobile_number">Enter your mobile number to create account.</string>
+    <string name="what_is_your_phone_number">What is your phone number?</string>
 </resources>
